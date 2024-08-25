@@ -1,13 +1,15 @@
 const express = require("express");
+
 const app = express();
+const apiRouter = express.Router();
 
-// Middleware to handle JSON responses
-app.use(express.json());
-
-// Define routes
-app.get("/", (req, res) => {
-    res.json({ message: "Congrats! You've deployed Express" });
+// Define routes for the /api base path
+apiRouter.get("/", (req, res) => {
+    res.json({ message: "Congrats! You've deployed Express to Vercel" });
 });
 
-// Export the app for deployment
+// Use the router with the /api base path
+app.use("/api", apiRouter);
+
+// Export the app for Vercel
 module.exports = app;
